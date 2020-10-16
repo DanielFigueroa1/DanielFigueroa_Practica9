@@ -11,7 +11,7 @@ import com.google.gson.Gson;
 import java.io.BufferedWriter;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnMessageListener{
 
     UDPConnection udp;
     private Orden orden;
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         orden = new Orden("","","");
 
         udp = new UDPConnection();
-        udp.setClient;
+        udp.setObserver(this); //this en este caso es main activity
         udp.start();
 
 
@@ -46,12 +46,13 @@ public class MainActivity extends AppCompatActivity {
                     String json = gson.toJson(grupo);
                     Log.e("hello", ""+json);
 
-                    sendMessage(json);
+                    udp.sendMessage(json);
 
                 }
         );
         yogur.setOnClickListener(
                 (v)->{
+
 
                 }
         );
@@ -68,4 +69,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void recibirConfirmacion(String orden) { //se conecta con el UDP, metodo se hace desde un hilo y si quiero imagenes necesito
+    runOnUiThread(
+            ()->{ //aqui van las confirmaciones de ordenes
+
+            }
+    );
+    }
 }
