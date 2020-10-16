@@ -34,16 +34,13 @@ public class MainActivity extends AppCompatActivity implements OnMessageListener
         udp = new UDPConnection();
         udp.setObserver(this); //this en este caso es main activity
         udp.start();
+        Gson gson = new Gson();
 
 
         sandwich.setOnClickListener(
                 (v)->{
-
-                    Gson gson = new Gson();
-
-                    ArrayList<Orden> grupo = new ArrayList<>();
-
-                    String json = gson.toJson(grupo);
+                    Orden orden = new Orden("sandwich.jpg", null, null);
+                    String json = gson.toJson(orden);
                     Log.e("hello", ""+json);
 
                     udp.sendMessage(json);
@@ -52,18 +49,30 @@ public class MainActivity extends AppCompatActivity implements OnMessageListener
         );
         yogur.setOnClickListener(
                 (v)->{
+                    Orden orden = new Orden("yogur.jpg", null, null);
+                    String json = gson.toJson(orden);
+                    Log.e("hello", ""+json);
 
+                    udp.sendMessage(json);
 
                 }
         );
         bebida.setOnClickListener(
                 (v)->{
+                    Orden orden = new Orden("gaseosas.jpg", null, null);
+                    String json = gson.toJson(orden);
+                    Log.e("hello", ""+json);
 
+                    udp.sendMessage(json);
                 }
         );
         hotdog.setOnClickListener(
                 (v)->{
+                    Orden orden = new Orden("hotdog.jpg", null, null);
+                    String json = gson.toJson(orden);
+                    Log.e("hello", ""+json);
 
+                    udp.sendMessage(json);
                 }
         );
     }

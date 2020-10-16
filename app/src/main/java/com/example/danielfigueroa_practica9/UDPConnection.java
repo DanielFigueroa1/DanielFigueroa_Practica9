@@ -22,7 +22,7 @@ public class UDPConnection extends Thread{
     public void run() {
         try {
             //1 Escuchar
-            socket = new DatagramSocket(6000);
+            socket = new DatagramSocket(5000);
 
             //esperar mensajes: datagramas
 
@@ -54,7 +54,7 @@ public class UDPConnection extends Thread{
                 ()->{
                     try {
                         //parametros datagrama de envio
-                        InetAddress ip = InetAddress.getByName("127.0.0.1");
+                        InetAddress ip = InetAddress.getByName("192.168.10.22");
                         DatagramPacket packet = new DatagramPacket(mensaje.getBytes(), mensaje.getBytes().length, ip, 6000); //dec con el que me comunico el 6000 es el puerto
                         socket.send(packet);
                     } catch (UnknownHostException e) {
